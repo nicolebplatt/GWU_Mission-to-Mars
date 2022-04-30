@@ -111,9 +111,10 @@ def hemisphere_images(browser):
     hemi_soup = soup(html, 'html.parser')
     links = browser.find_by_css('a.product-item img')
     
-    for i in range(len(links)):
-        hemisphere = {}
-        try:
+    try:
+        for i in range(len(links)):
+            hemisphere = {}
+            
             # find image in html devtools inspect
             browser.find_by_css('a.product-item img')[i].click()
             
@@ -123,13 +124,16 @@ def hemisphere_images(browser):
             
             sample_title = browser.find_by_tag('h2').first
             hemisphere['title'] = sample_title.text
-        except BaseException:
-            return None
-        
-        hemisphere_image_urls.append(hemisphere)
-        browser.back()
+            
+            hemisphere_image_urls.append(hemisphere)
+            
+            browser.back()
+    except BaseException as e:
+        print(e)
 
     return hemisphere_image_urls
+
+
 
 if __name__ == "__main__":
     # If running as script, print scraped data
