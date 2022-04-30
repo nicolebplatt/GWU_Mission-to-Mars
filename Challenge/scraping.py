@@ -101,7 +101,7 @@ def hemisphere_images(browser):
     # Hemisphere images & titles
     # Visit Mars Hemispheres    
     url = 'https://marshemispheres.com/'
-    browser.visit(url)
+    browser.visit(url+'index.html')
 
     # Create a list to hold the images and titles.
     hemisphere_image_urls = []
@@ -128,11 +128,10 @@ def hemisphere_images(browser):
             hemisphere_image_urls.append(hemisphere)
             
             browser.back()
-    except BaseException as e:
+    except Exception as e:
         print(e)
 
     return hemisphere_image_urls
-
 
 
 if __name__ == "__main__":
